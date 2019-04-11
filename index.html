@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        *,
+        ::before,
+        ::after {
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: unset;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .header {
+            justify-content: space-around;
+            /*padding: 10px 15px;*/
+            color: white;
+            background-color: #ee6e73;
+            align-items: center;
+        }
+
+        .header a {
+            color: white;
+        }
+
+        .nav ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav > ul > li {
+            margin: 5px 10px;
+            list-style: none;
+            /*position: relative;*/
+            padding: 5px;
+        }
+        li:hover .sub-item {
+            display: block;
+        }
+
+        .sub-item {
+            display: none;
+            position: absolute;
+            border: 2px solid #ee6e73;
+            background-color: white;
+        }
+        .sub-item li {
+
+            text-align: center;
+
+        }
+
+        .sub-item li:hover {
+            background-color: rgba(0, 0, 0, 0.13);
+        }
+        .sub-item li a {
+            color: #ee6e73;
+        }
+
+        .nav-wrapper {
+            align-items: center;
+            width: 60%;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .brand-logo {
+            width: 40%;
+            font-size: 5rem;
+            font-weight: 800;
+            font-style: italic;
+            font-family: Brush Script MT, Brush Script Std, cursive;
+            line-height: 80px;
+            padding-left: 10px;
+        }
+        .user-wrapper {
+            background-color: white;
+            color: #ee6e73;
+            border-radius: 100%;
+            width: 7%;
+            height: 0;
+            padding-bottom: 7%;
+            position: relative;
+        }
+         .user {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="root">
+    <header class="header d-flex">
+        <div class="brand-logo">
+            <a href="#">Delicious Recipes</a>
+        </div>
+        <div class="nav-wrapper d-flex">
+            <nav class="nav d-flex">
+                <ul class="d-flex">
+                    <li>
+                        <a href="/recipes">Recipes</a>
+                        <ul class="sub-item">
+                            <li>
+                                <a href="/meat">Meat</a>
+                            </li>
+                            <li>
+                                <a href="/fish">Fish</a>
+                            </li>
+                            <li>
+                                <a href="/deserts">Deserts</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/add_recipe">Add Recipe</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Log out</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="user-wrapper">
+                <div class="user">NN</div>
+            </div>
+        </div>
+    </header>
+    <main>
+
+    </main>
+</div>
+</body>
+</html>
