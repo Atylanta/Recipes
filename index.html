@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+
+        /*global styles*/
         body {
             margin: 0;
         }
+
         *,
         ::before,
         ::after {
@@ -18,8 +21,23 @@
             color: unset;
         }
 
+        /*global classes*/
+
         .d-flex {
             display: flex;
+        }
+
+        .m-auto {
+            margin: auto;
+        }
+
+        /*custom styles*/
+
+        [id='root'] {
+            min-height: 100vh;
+            background: url('./img/background-main.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
         .header {
@@ -34,18 +52,45 @@
             color: white;
         }
 
+        .header li {
+            list-style: none;
+        }
+
+        .brand-logo {
+            width: 50%;
+            font-size: 4.5rem;
+            font-weight: 800;
+            font-style: italic;
+            font-family: Brush Script MT, Brush Script Std, cursive;
+            padding-left: 10px;
+            text-align: center;
+        }
+
+        .nav-wrapper {
+            align-items: center;
+            width: 50%;
+            justify-content: center;
+            font-size: 1.5rem;
+            padding-right: 10%;
+        }
+
+        .nav {
+            width: 80%;
+        }
+
         .nav ul {
             padding: 0;
             margin: 0;
+            justify-content: space-around;
+            width: 100%;
         }
 
         .nav > ul > li {
             margin: 5px 10px;
-            list-style: none;
-            /*position: relative;*/
-            padding: 5px;
-        }
-        li:hover .sub-item {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }        li:hover .sub-item {
             display: block;
         }
 
@@ -56,34 +101,16 @@
             background-color: white;
         }
         .sub-item li {
-
             text-align: center;
-
+            padding: 3px 0;
         }
 
         .sub-item li:hover {
             background-color: rgba(0, 0, 0, 0.13);
-        }
-        .sub-item li a {
+        }        .sub-item li a {
             color: #ee6e73;
         }
 
-        .nav-wrapper {
-            align-items: center;
-            width: 60%;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .brand-logo {
-            width: 40%;
-            font-size: 5rem;
-            font-weight: 800;
-            font-style: italic;
-            font-family: Brush Script MT, Brush Script Std, cursive;
-            line-height: 80px;
-            padding-left: 10px;
-        }
         .user-wrapper {
             background-color: white;
             color: #ee6e73;
@@ -92,6 +119,7 @@
             height: 0;
             padding-bottom: 7%;
             position: relative;
+            cursor: pointer;
         }
          .user {
             position: absolute;
@@ -99,6 +127,9 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
+        /*main*/
+
 
     </style>
 
@@ -139,7 +170,7 @@
             </div>
         </div>
     </header>
-    <main>
+    <main class="main">
 
     </main>
 </div>
