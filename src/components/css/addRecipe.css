@@ -1,0 +1,96 @@
+.right-aligned {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    margin-right: 0;
+    color: white;
+    padding-right: 20px;
+}
+
+.title {
+    font-size: 1.5rem;
+    margin: 30px 0 0 0;
+}
+
+p {
+    font-size: 1.3rem;
+}
+
+.input-line {
+    height: 40px;
+    width: 90%;
+    padding: 5px;
+    margin: 0;
+    font-size: 1.1rem;
+    background-color: rgba(255, 255, 255, 0.11);
+    color: white;
+    outline: none;
+}
+
+.ingredient {
+    height: 30px;
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0.11);
+    color: white;
+    outline: none;
+    padding: 5px;
+}
+
+.quantity {
+    height: 30px;
+    width: 30px;
+    background-color: rgba(255, 255, 255, 0.11);
+    color: white;
+    outline: none;
+    text-align: center;
+}
+
+.select {
+    height: 30px;
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0.11);
+    color: white;
+    outline: none;
+}
+
+.select option{
+    height: 30px;
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0.11);
+    color: white;
+    outline: none;
+}
+
+.sub-ingredient {
+    padding: 0;
+    width: 90%;
+}
+
+.button {
+    margin: 20px 20px 0 0;
+    height: 20%;
+    width: 20%;
+    font: inherit;
+    color: inherit;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ee6e73;
+    border: solid 1px transparent;
+    border-radius: 4px;
+    padding: 0.5em 1em;
+}
+
+.input-instruction {
+    height: 200px;
+    width: 90%;
+    padding: 5px;
+    margin: 0;
+    font-size: 1.3rem;
+    background-color: rgba(255, 255, 255, 0.11);
+    resize: none;
+    color: white;
+    outline: none;
+
+}
