@@ -1,13 +1,18 @@
 import React from 'react';
 import '../css/project-list.css'
+import  moment from 'moment';
 
-const ProjectSummary = () => {
+const ProjectSummary = ({project}) => {
+
     return (
-        <div className="margin-elem">
+        <div className="margin-elem" >
             <div className='bordered-recipe'>
-                <span className="projectTitle">Project Title</span>
-                <p>Posted by NN</p>
-                <p className='dateStyles'>17 April 2019 </p>
+                <div className="projectTitle">{project.title}</div>
+                <div className='tags'>Tags: {project.tags}</div>
+                <span>
+                    <p className='postedAndDate'>Posted by {project.authorFirstName + ' ' + project.authorLastName}</p>
+                    <p className='postedAndDate'>{moment(project.createAt.toDate()).calendar()}</p>
+                </span>
             </div>
         </div>
     )

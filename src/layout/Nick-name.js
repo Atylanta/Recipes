@@ -1,11 +1,10 @@
 import React from 'react';
 import '../index.css'
 
-const Nickname = () => {
+const Nickname = (props) => {
     return (
-
         <div className="user-wrapper">
-            <div className="user">NN</div>
+            <div className="user">{props.profile.initials}</div>
         </div>
     )
 };

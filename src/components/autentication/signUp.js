@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
 import '../../index.css';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import '../css/login.css'
+import {signUp} from "../../store/actions/authActions";
+
+
 
 class SignUp extends Component {
 
@@ -18,14 +24,16 @@ class SignUp extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state)
+        this.props.signUp(this.state)
     };
 
     render() {
+        const { authError, auth } = this.props;
+        if (auth.uid ) return <Redirect to='/'/>
         return (
             <div className='aligned-center'>
                 <form onSubmit={this.handleSubmit}>
-                    <h4 className='title'>Sign In</h4>
+                    <h4 className='title'>Sign Un</h4>
                     <div className='with-margin'>
                         <label htmlFor="email"></label>
                         <input type="email" id='email' className='input-line' placeholder='Email' onChange={this.handleChange}/>
@@ -43,8 +51,12 @@ class SignUp extends Component {
                         <input type="text" id='lastName' className='input-line' placeholder='Last Name' onChange={this.handleChange}/>
                     </div>
                     <div>
-                        <button className="btn">Login</button>
+                        <button className="btn">Sign Up</button>
                     </div>
+                    <div className='loginError'>
+                        { authError ? <p>{authError}</p> : null }
+                    </div>
+
                 </form>
 
             </div>
@@ -52,4 +64,17 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp;
+const mapStateToProps = (state) => {
+    return {
+        authError: state.auth.authError,
+        auth: state.firebase.auth
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signUp: (newUser)=> dispatch(signUp(newUser))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

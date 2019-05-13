@@ -1,100 +1,130 @@
 import React, {Component} from 'react';
 import '../../index.css';
 import '../css/addRecipe.css'
-//import Ingredient from './ingredient'
+import {createProject} from "../../store/actions/projectAction";
+import connect from "react-redux/es/connect/connect";
+import { Redirect } from 'react-router-dom';
 
 
 class AddRecipe extends Component {
 
     state = {
         title: '',
-        ingredient: '',
-        quantity: '',
-        select: '',
+        ingredients: [],
+        tags: [],
         instructions: ''
     };
 
-    handleChange = (e) => {
-       // if ( (e.target.id) !== 'Ingredients' && (e.target.id) !== 'quantity' && (e.target.id) !== 'select' ) {
-            this.setState ({
-                [e.target.id]: e.target.value
-            });
-        // } else {
-        //     this.setState ({
-        //         [e.target.id]: e.target.value.push
-        //     })
-        // }
+    changeIngredient = () => {
+        const parentElement = document.getElementById('subIngredient').childNodes;
+        let arrayI = [];
+        for (let i = 0; i < parentElement.length; i++) {
+            let string = parentElement[i].value;
+            arrayI.push(string)
+        }
+        this.setState({
+            ingredients: arrayI
+        });
 
+        const parentTags = document.getElementById('subTags').childNodes;
+        let arrayT = [];
+        for (let j = 0; j < parentTags.length; j++) {
+            let stringT = parentTags[j].value;
+            arrayT.push(stringT)
+        }
+        this.setState({
+            tags: arrayT
+        });
+    };
+
+
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state)
+        this.props.createProject(this.state);
+        this.props.history.push('/');
+    };
+
+    handleAdd = () => {
+        const subIngredient = document.getElementById('subIngredient');
+        const Ingredient = document.createElement('input');
+        Ingredient.type = 'text';
+        subIngredient.appendChild(Ingredient);
+
+       if(subIngredient.childNodes.length > 1) {
+           const deleteBtn = document.getElementById('deleteBtn');
+           deleteBtn.style.visibility = 'visible';
+
+       }
+    };
+
+    handleAddTags = () => {
+        const subTags = document.getElementById('subTags');
+        const Tag = document.createElement('input');
+        Tag.type = 'text';
+        subTags.appendChild(Tag);
+
+        if(subTags.childNodes.length > 1) {
+            const deleteBtnTags = document.getElementById('deleteBtnTags');
+            deleteBtnTags.style.visibility = 'visible';
+
+        }
+    };
+
+    handleDelete = () => {
+        const subIngredient = document.getElementById('subIngredient');
+        const lastChild = subIngredient.lastChild;
+        subIngredient.removeChild(lastChild);
+            if (subIngredient.childNodes.length === 1) {
+                const deleteBtn = document.getElementById('deleteBtn');
+                deleteBtn.style.visibility = 'hidden';
+            }
+    };
+
+    handleDeleteTags = () => {
+        const subTags = document.getElementById('subTags');
+        const lastChild = subTags.lastChild;
+        subTags.removeChild(lastChild);
+        if (subTags.childNodes.length === 1) {
+            const deleteBtnTags = document.getElementById('deleteBtnTags');
+            deleteBtnTags.style.visibility = 'hidden';
+        }
     };
 
     render() {
-        //в id & for  нужно запухнуть переменную, равную номеру и месту, в котором вызывалась константа
-
-        /* const inputArea = () => {
-             return (
-                 <div className=''>
-                     <label className='' for={}>{}</label>
-                     <textarea id={} className='' name={}/>
-                 </div>
-             )
-         };
- */
-
-        //if btnAdd onClick == к текущему сост компонента нужно добавить еще одну строку
-        //if btnDelete onClick == удаляем строку
-
-
-        // const position =
-
-
-        /* const handleClick = () => {
-
-         };
-         */
-
-
+        const { auth } = this.props;
+        if (!auth.uid) return <Redirect to='/login'/>
 
         return (
-            <form className='right-aligned' onSubmit={this.handleSubmit}>
+            <form className='right-aligned' onSubmit={this.handleSubmit} onBlur={this.changeIngredient}>
                 <h4 align="center" className='title'>Add new recipe</h4>
-                <div className='input-list'>
+                <div className='input-list' >
                     <p>Recipe name</p>
                     <input type='text' id='title' className='input-line' maxLength={100} onChange={this.handleChange}/>
                     <p>Ingredients</p>
-                    <span className='sub-ingredient'>
-                        <input type='text' id='ingredient' className='ingredient'
-                               onChange={this.handleChange}/>
-                        <input type='text' id='quantity' className='quantity' onChange={this.handleChange}/>
-                        <select id="select" className='select' onChange={this.handleChange}>
-                            <option>gram</option>
-                            <option>pot</option>
-                            <option>capitulum</option>
-                            <option>clove</option>
-                            <option>kilogram</option>
-                            <option>a piece</option>
-                            <option>liter</option>
-                            <option>milliliter</option>
-                            <option>on the tip of a knife</option>
-                            <option>in your taste</option>
-                            <option>bundle</option>
-                            <option>а glass</option>
-                            <option>tablespoon</option>
-                            <option>tea spoon</option>
-                            <option>chunk</option>
-                            <option>thimbleful</option>
-                            <option>stem</option>
-                            <option>sprig</option>
-                        </select>
-                </span>
+                    <div className='sub-ingredient' id='subIngredient'>
+                        <input type='text'/>
+                    </div>
+                    <span className='AddDeleteBtn'>
+                        <button type='button' className='button' onClick={this.handleAdd}>Add+</button>
+                        <button type='button' id='deleteBtn' className='button deleteBtn' onClick={this.handleDelete}>Delete</button>
+                    </span>
                 </div>
-                <button type='button' className='button'>Add+</button>
+                <p>Tags</p>
+                <div className='sub-ingredient' id='subTags'>
+                    <input type='text'/>
+                </div>
+                <span className='AddDeleteBtn'>
+                        <button type='button' className='button' onClick={this.handleAddTags}>Add+</button>
+                        <button type='button' id='deleteBtnTags' className='button deleteBtn' onClick={this.handleDeleteTags}>Delete</button>
+                    </span>
                 <p>Instructions</p>
-                <textarea name='instructions' className='input-instruction' onChange={this.handleChange}/>
+                <textarea id='instructions' className='input-instruction' onChange={this.handleChange}/>
                 <button type='submit' className='button'>Create</button>
             </form>
 
@@ -102,4 +132,16 @@ class AddRecipe extends Component {
     }
 }
 
-export default AddRecipe;
+const mapStateToProps = (state) => {
+    return{
+        auth: state.firebase.auth
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createProject: (project) => dispatch(createProject(project))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddRecipe);

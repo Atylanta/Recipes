@@ -28,16 +28,25 @@ p {
     outline: none;
 }
 
-.ingredient {
+.sub-ingredient > input {
     height: 30px;
-    width: 200px;
+    width: 70%;
     background-color: rgba(255, 255, 255, 0.11);
     color: white;
     outline: none;
     padding: 5px;
 }
 
-.quantity {
+/*.sub-ingredient > textarea {
+    height: 100px;
+    width: 70%;
+    background-color: rgba(255, 255, 255, 0.11);
+    color: white;
+    outline: none;
+    padding: 5px;
+}*/
+
+/*.quantity {
     height: 30px;
     width: 30px;
     background-color: rgba(255, 255, 255, 0.11);
@@ -60,7 +69,7 @@ p {
     background-color: rgba(255, 255, 255, 0.11);
     color: white;
     outline: none;
-}
+}*/
 
 .sub-ingredient {
     padding: 0;
@@ -80,6 +89,10 @@ p {
     border: solid 1px transparent;
     border-radius: 4px;
     padding: 0.5em 1em;
+}
+
+.deleteBtn {
+visibility: hidden;
 }
 
 .input-instruction {

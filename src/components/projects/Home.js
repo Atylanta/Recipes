@@ -3,27 +3,39 @@ import '../../index.css';
 import '../css/home.css'
 import Notifications from './notification'
 import ProjectList from './project-list';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import FirstPage from './FirstPage'
 
 
 class Home extends Component {
-
     render() {
+        const { projects, auth } = this.props;
         return (
             <div className='dashboard'>
                 <div className="notifications">
-                <Notifications/>
+                    {auth.uid ? <Notifications/> : <FirstPage/>}
             </div>
                 <div className="project-list">
                     <p>Last added recipes</p>
-                    <ProjectList/>
+                    <ProjectList projects = {projects}/>
                 </div>
-
-
             </div>
-
         )
     }
-
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return{
+        projects: state.firestore.ordered.projects,
+        auth: state.firebase.auth
+    }
+};
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        {collection: 'projects'}
+    ])
+)(Home);

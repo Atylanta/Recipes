@@ -21,7 +21,7 @@ class SignedOutLinks extends Component {
                     </ul>
                 </li>
                 <li className= 'nav-list'>
-                    <Link to="/authentication" className='header-links'>Sign In</Link>
+                    <Link to="/authentication" className='header-links'>Sign Un</Link>
                 </li>
                 <li className= 'nav-list'>
                     <Link to="/login" className='header-links'>Log in</Link>

@@ -1,24 +1,48 @@
 import React from 'react';
-import '../css/projectDetails.css'
+import '../css/projectDetails.css';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import IngredientList from "./ingredientList";
+import moment from "moment";
 
 const ProjectDetails = (props) => {
 
-    const id = props.match.params.id;
-
-    return (
-
-        <div className='project-details'>
-            <div>
-                <span className="title"> Project Title - {id} </span>
-                <p>На КиноФлакс вы можете смотреть онлайн фильм сериал "Светлячок (2002-2003) Firefly" совершенно бесплатно, без регистрации, в хорошем качестве HD и в хорошей озвучке (с хорошим переводом) на русском языке. Кино можно смотреть на компьютере, на телефоне, на планшете, если это сериал, то новые / последние серии и все серии подряд. Видео относится к следующим разделам: зарубежный сериал » боевик » драма » приключения » фантастика. Режиссер данной кинокартины - Джосс Уидон, Верн Джиллам, Тим Минеар, сценарий - Шерил Кэйн, Бен Эдлунд, Джейн Эспенсон, продюсер фильма - Гарет Дейвис, Лиза Лэссек, Тим Минеар. Главные роли в ленте исполнили - Нэйтан Филлион, Джина Торрес, Алан Тьюдик, Морена Баккарин, Адам Болдуин, Джуэл... и другие актеры. Страна, где происходили съемки киноленты - США. Время длительности кинофильма составляет 42 мин. (588 мин.). Смотрите онлайн новинки фильмов 2018, сериалов 2018, а так-же русский, зарубежный, документальный</p>
+    const { project } = props;
+    if (project) {
+        return (
+        <div className='project-details '>
+            <div className='bordered-recipe'>
+                <div className="title">{project.title}</div>
+                <IngredientList list={project.ingredients}/>
+                <p className='instruction'>{project.instructions}</p>
+                <p className='tags
+                '>Tags: {project.tags}</p>
+                <div className='postedAndDate'>Posted by {project.authorFirstName + ' ' + project.authorLastName}</div>
+                <div className='postedAndDate'>{moment(project.createAt.toDate()).calendar()}</div>
             </div>
-            <div>
-                <div>Posted by NN</div>
-                <div>17th April 2019</div>
-            </div>
-
         </div>
-    )
+        )} else {
+        return (
+            <div>Loading project...</div>
+        )
+    }
+
 };
 
-export default ProjectDetails;
+const mapStateToProps = (state, ownProps) => {
+    //console.log(state);
+    const id = ownProps.match.params.id;
+    const projects = state.firestore.data.projects;
+    const project = projects ? projects[id] : null;
+    return {
+        project: project
+    }
+}
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: 'projects'}
+    ])
+)(ProjectDetails);

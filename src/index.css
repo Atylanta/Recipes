@@ -123,3 +123,13 @@ a {
 }
 
 /*main*/
+.but {
+  font: inherit;
+  color: inherit;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  background-color: #ee6e73;
+  border: solid 1px transparent;
+  //padding: 0.5em 1em;
+}
