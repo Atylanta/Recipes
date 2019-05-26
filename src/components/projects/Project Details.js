@@ -16,8 +16,7 @@ const ProjectDetails = (props) => {
                 <div className="title">{project.title}</div>
                 <IngredientList list={project.ingredients}/>
                 <p className='instruction'>{project.instructions}</p>
-                <p className='tags
-                '>Tags: {project.tags}</p>
+                <p className='tags'>Tags: { project.tags.join(', ') }</p>
                 <div className='postedAndDate'>Posted by {project.authorFirstName + ' ' + project.authorLastName}</div>
                 <div className='postedAndDate'>{moment(project.createAt.toDate()).calendar()}</div>
             </div>
@@ -38,7 +37,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         project: project
     }
-}
+};
 
 export default compose(
     connect(mapStateToProps),

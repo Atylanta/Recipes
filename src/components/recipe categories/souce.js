@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import RecipeList from '../projects/recipesList';
 
 
-class Meat extends Component {
+class Sauce extends Component {
     render() {
         return (
             <div>
-                <RecipeList tagName='MEAT'/>
+                <RecipeList tagName='SAUCE'/>
             </div>
         );
     }
 }
 
 
-export default Meat;
+export default Sauce;

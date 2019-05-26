@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import FirstPage from './FirstPage'
+//import Meat from '../recipe categories/meat'
 
 
 class Home extends Component {
@@ -21,6 +22,7 @@ class Home extends Component {
                     <p>Last added recipes</p>
                     <ProjectList projects = {projects}/>
                 </div>
+
             </div>
         )
     }

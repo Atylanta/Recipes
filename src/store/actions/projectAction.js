@@ -6,7 +6,7 @@ export const createProject = (project) => {
         const profile = getState().firebase.profile;
         const authorId = getState().firebase.auth.uid;
 
-        const tags = project.tags;
+       /* const tags = project.tags;
         if (tags.length > 1) {
             for (let i = 0; i < tags.length; i++) {
                 firestore.collection(tags[i]).add({
@@ -44,7 +44,7 @@ export const createProject = (project) => {
                     type: 'CREATE_PROJECT_ERROR', err
                 })
             })
-        }
+        }*/
         firestore.collection('projects').add({
             ...project,
             authorFirstName: profile.firstName,

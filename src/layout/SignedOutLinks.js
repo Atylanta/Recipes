@@ -18,6 +18,18 @@ class SignedOutLinks extends Component {
                         <li>
                             <Link to="/deserts" className='dropdown'>Deserts</Link>
                         </li>
+                        <li>
+                            <Link to="/vegetables" className='dropdown'>Vegetables</Link>
+                        </li>
+                        <li>
+                            <Link to="/sauce" className='dropdown'>Sauce</Link>
+                        </li>
+                        <li>
+                            <Link to="/salads" className='dropdown'>Salads</Link>
+                        </li>
+                        <li>
+                            <Link to="/chicken" className='dropdown'>Chicken</Link>
+                        </li>
                     </ul>
                 </li>
                 <li className= 'nav-list'>
